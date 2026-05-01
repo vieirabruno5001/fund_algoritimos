@@ -1,23 +1,29 @@
-valor = input("Digite o valor da compra: ")
-qparcela = input("Digite a quantidade de parcelas: ")
-x = float
-n = float
-desconto = valor * x * n
+valor = float(input("Digite o valor da compra: "))
+qparcela = int(input("Digite a quantidade de parcelas: "))
+
+
 
 if qparcela == 1:
     x = 0.10
-if qparcela == 2 or 3:
+elif qparcela == 2 or 3:
     x = 0.05
-if qparcela >= 4:
+else:
     x = 0
-if valor > 5000:
+
+
+desconto = valor * x
+
+if valor > 5000 and qparcela <= 3:
     n = 0.05
 else:
     n = 0
 
-valorfinal = valor - desconto
+desconto_extra = valor * n
+descontototal = desconto + desconto_extra
+
+valorfinal = valor - descontototal
 valorparcela = valorfinal / qparcela
 
-print(f"Desconto total: {desconto}")
-print(f"Valor final da compra com desconto: {valorfinal}")
-print(f"Cada parcela será de: {valorparcela}")
+print(f"Desconto total: {descontototal:.2f}")
+print(f"Valor final da compra com desconto: {valorfinal:.2f}")
+print(f"Cada parcela será de: {valorparcela:.2f}")
