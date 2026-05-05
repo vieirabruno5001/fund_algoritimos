@@ -1,13 +1,11 @@
-n = int(input("Digite o tamanho da cruz: "))
-if n < 1 or n > 10 :
+n = int(input("Digite um número de 1 a 10: "))
+if n < 1 or n >= 10 :
     print("Número inválido!")
-else:
-    tamanho = 2 * 
-
-    for i in range(tamanho):
-        for j in range(tamanho):
-            if i == n - 1 or j == n - 1:
-                print("#", end=' ')
+else:  
+    for i in range(n):
+        for j in range(n):
+            if i == j or i + j == n - 1:
+                print("#", end='')
             else:
-                print(" ", end=' ')
+                print(" ", end='')
         print()
