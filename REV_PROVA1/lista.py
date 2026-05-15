@@ -13,4 +13,3 @@ if entrada_menu == 1:
 elif entada_menu == 2:
    login()
 elif entrada_menu == 0:
-   break
