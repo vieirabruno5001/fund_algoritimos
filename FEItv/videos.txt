@@ -1,5 +1,10 @@
-1;Breaking Bad;Série;Drama
-2;Interestelar;Filme;Ficção
-3;The Batman;Filme;Ação
-4;Dark;Série;Suspense
-5;Vingadores Ultimato;Filme;Ação
+1;Breaking Bad;Serie;Drama
+2;Interestelar;Filme;Ficcao
+3;The Batman;Filme;Acao
+4;Racionais;Documentario;Acao
+5;Vingadores Ultimato;Filme;Acao
+6;Gente Grande;Filme;Comedia
+7;Rick and Morty;Serie;Ficcao
+8;Meu Malvado Favorito;Desenho;Comedia
+9;Dark;Serie;Suspense
+10;Naruto;Anime;Acao

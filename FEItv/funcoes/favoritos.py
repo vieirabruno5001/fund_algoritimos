@@ -4,13 +4,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def menu_favoritos(usuario):
     while True:
-        print("\n=== FAVORITOS ===")
+        print("=== FAVORITOS ===")
         print("1 - Adicionar vídeo")
         print("2 - Ver favoritos")
         print("3 - Remover vídeo")
         print("0 - Voltar")
 
-        opcao = input("Escolha: ")
+        opcao = input("Opção: ")
 
         if opcao == "1":
             adicionar_favorito(usuario)
@@ -26,38 +26,83 @@ def menu_favoritos(usuario):
 
 
 def adicionar_favorito(usuario):
-    id_video = input("ID do vídeo: ")
+    nome_video = input("Nome do vídeo: ")
+
+    with open(os.path.join(BASE_DIR, "videos.txt"), "r") as arquivo:
+        videos = arquivo.readlines()
+
+    video_encontrado = False
+
+    for video in videos:
+        dados = video.strip().split(";")
+
+        if dados[1] == nome_video:
+            video_encontrado = True
+            break
+
+    if not video_encontrado:
+        print("Vídeo não encontrado.")
+        return
 
     with open(os.path.join(BASE_DIR, "favoritos.txt"), "a") as arquivo:
-        arquivo.write(f"{usuario};{id_video}\n")
+        arquivo.write(f"{usuario};{nome_video}\n")
 
     print("Vídeo adicionado aos favoritos.")
-
 
 def ver_favoritos(usuario):
     with open(os.path.join(BASE_DIR, "favoritos.txt"), "r") as arquivo:
         favoritos = arquivo.readlines()
 
-    print("\n=== SEUS FAVORITOS ===")
+    encontrou = False
+
+    print("=== SEUS FAVORITOS ===")
 
     for favorito in favoritos:
         dados = favorito.strip().split(";")
 
         if dados[0] == usuario:
-            print(f"Nome do vídeo: {dados[2]}")
+            encontrou = True
+            print(f"Nome: {dados[1]}")
+
+    if not encontrou:
+        print("Você não adicionou nenhum vídeo aos favoritos.")
 
 
 def remover_favorito(usuario):
-    id_video = input("ID do vídeo para remover: ")
+    nome_video = input("Nome do vídeo para remover: ")
+
+    with open(os.path.join(BASE_DIR, "videos.txt"), "r") as arquivo:
+        videos = arquivo.readlines()
+
+    video_encontrado = False
+
+    for video in videos:
+        dados = video.strip().split(";")
+
+        if dados[1] == nome_video:
+            video_encontrado = True
+            break
+
+    if not video_encontrado:
+        print("Vídeo não encontrado.")
+        return
 
     with open(os.path.join(BASE_DIR, "favoritos.txt"), "r") as arquivo:
         favoritos = arquivo.readlines()
+
+    removido = False
 
     with open(os.path.join(BASE_DIR, "favoritos.txt"), "w") as arquivo:
         for favorito in favoritos:
             dados = favorito.strip().split(";")
 
-            if not (dados[0] == usuario and dados[1] == id_video):
-                arquivo.write(favorito)
+            if dados[0] == usuario and dados[1] == nome_video:
+                removido = True
+                continue
 
-    print("Vídeo removido dos favoritos.")
+            arquivo.write(favorito)
+
+    if removido:
+        print("Vídeo removido dos favoritos.")
+    else:
+        print("Esse vídeo não está nos favoritos.")

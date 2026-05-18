@@ -10,7 +10,7 @@ from funcoes.favoritos import menu_favoritos
 usuario_logado = None
 
 while True:
-    print("\n===== FEItv =====")
+    print("===== FEItv =====")
     print("1 - Cadastrar usuário")
     print("2 - Login")
     print("3 - Listar vídeos")
@@ -19,7 +19,7 @@ while True:
     print("6 - Favoritos")
     print("0 - Sair")
 
-    opcao = input("Escolha: ")
+    opcao = input("Opção: ")
 
     if opcao == "1":
         cadastrar_usuario()
